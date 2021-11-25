@@ -1,0 +1,181 @@
+﻿@page "/map"
+@using GoogleMapsComponents
+@using GoogleMapsComponents.Maps
+
+<AuthorizeView>
+    @if(!isTraining && !isDoneTraining) {
+    <div>
+        <h1>Please select a location to train</h1>
+        <GoogleMap @ref="@map1" Id="map1" Options="@mapOptions" OnAfterInit="@(async () => await OnAfterInitAsync())">
+        </GoogleMap>
+        <br />
+        <EditForm Context="another_one" Model="request">
+            <InputRadioGroup @bind-Value="request.ModelType">
+                <InputRadio Value="1" /> LSTM (Fast)<br />
+                <InputRadio Value="2" /> Stacked LSTM (Balanced)<br />
+                <InputRadio Value="3" /> Biredictional (Thorough)<br />
+            </InputRadioGroup>
+        </EditForm>
+        <br />
+        <button class="btn-danger" @onclick="Train"> Train Location</button>
+    </div>
+    }
+    else if(!isTraining && isDoneTraining && !hasFailed)
+    {
+        <h3>Results</h3>
+        <h4>Weather Forcast for tomorrow is: @tmwWeather °C</h4>
+        <button class="btn-danger" @onclick="Refresh">Try different region</button>
+        <br/>
+        <img src="@imageResult" width="80%" height="50%"/>
+    }
+    else if(!isTraining && isDoneTraining && hasFailed)
+    {
+        <h3>Could not find any data for this location, please try again</h3>
+        <button class="btn-primary" @onclick="Refresh">Try different region</button>
+    }
+    else if(isTraining) {
+        <h3>please wait.... training model</h3>
+    }
+
+</AuthorizeView>
+
+@code { 
+    private GoogleMap map1 = default!;
+    private MapOptions mapOptions = default!;
+    private WeatherApp.Logic.WeatherPythonApi api = new Logic.WeatherPythonApi();
+    private WeatherApp.Logic.WeatherRequest request = new Logic.WeatherRequest();
+    private bool isTraining = false;
+    private bool isDoneTraining = false;
+    private bool hasFailed = false;
+
+    private Stack<Marker> markers = new Stack<Marker>();
+    private LatLngLiteral latLng = null;
+    private string labelText = "";
+    private string imageResult = "";
+    private float tmwWeather = 0;
+
+    protected void Refresh()
+    {
+        isDoneTraining = false;
+        StateHasChanged();
+    }
+
+    protected async Task Train()
+    {
+        imageResult = "";
+        hasFailed = false;
+        isDoneTraining = false;
+        isTraining = true;
+        StateHasChanged();
+
+        if (latLng == null)
+        {
+            return;
+        }
+        request.Lat = latLng.Lat;
+        request.Lon = latLng.Lng;
+
+        var results = await api.SendTrainLocation(request);
+        
+        if(results.Reason == "")
+        {
+            imageResult = results.ResultImage;
+            tmwWeather = (float) Math.Round(results.WeatherPredictedTomorrow, 1);
+            Console.WriteLine(imageResult);
+        }
+        else
+        {
+            hasFailed = true;
+        }
+
+        isDoneTraining = true;
+        isTraining = false;
+
+        StateHasChanged();
+
+    }
+
+    protected override void OnInitialized()
+    {
+        mapOptions = new MapOptions()
+        {
+            Zoom = 5,
+            Center = new LatLngLiteral()
+            {
+                Lat = 52,
+                Lng = 0
+            },
+            MapTypeId = MapTypeId.Roadmap
+        };
+    }
+
+    private async Task OnAfterInitAsync()
+    {
+        await map1.InteropObject.AddListener<MouseEvent>("click", async (e) => await OnClick(e));
+    }
+
+
+    private async Task OnClick(MouseEvent e)
+    {
+        await RemoveMarker();
+        await AddMarker(e.LatLng);
+
+        latLng = e.LatLng;
+    }
+
+
+    private async Task AddMarker(LatLngLiteral latling)
+    {
+        var marker = await Marker.CreateAsync(map1.JsRuntime,
+            new MarkerOptions()
+            {
+                Position = latling,
+                Map = map1.InteropObject,
+                Draggable = false,
+                Icon = new Icon()
+                {
+                    Url = "https://www.pngall.com/wp-content/uploads/2017/05/Map-Marker-PNG-File.png",
+                    ScaledSize = new Size { Height = 35, Width = 35}
+                }
+            });
+
+        var icon = await marker.GetIcon();
+
+        Console.WriteLine($"Get icon result type is : {icon.Value.GetType()}");
+
+        icon.Switch(
+            s => Console.WriteLine(s),
+            i => Console.WriteLine(i.Url),
+            _ => { });
+
+        markers.Push(marker);
+        labelText = await marker.GetLabelText();
+
+        await marker.AddListener<MouseEvent>("click", async e =>
+        {
+            string markerLabelText = await marker.GetLabelText();
+            StateHasChanged();
+            await e.Stop();
+        });
+        await marker.AddListener<MouseEvent>("dragend", async e => await OnMakerDragEnd(marker, e));
+    }
+
+    private async Task OnMakerDragEnd(Marker M, MouseEvent e)
+    {
+        string markerLabelText = await M.GetLabelText();
+        StateHasChanged();
+        await e.Stop();
+    }
+
+    private async Task RemoveMarker()
+    {
+        if (!markers.Any())
+        {
+            return;
+        }
+
+        var lastMarker = markers.Pop();
+        await lastMarker.SetMap(null);
+        labelText = markers.Any() ? await markers.Peek().GetLabelText() : "";
+    }
+}

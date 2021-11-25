@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoogleMapsComponents", "GoogleMapsComponents\GoogleMapsComponents.csproj", "{B14CA1AE-ECF0-4755-8897-CDE6B3EA07E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherApp.Server", "WeatherApp.Server\WeatherApp.Server.csproj", "{529B35BA-418D-42F1-9F30-1F0652B3D795}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B14CA1AE-ECF0-4755-8897-CDE6B3EA07E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B14CA1AE-ECF0-4755-8897-CDE6B3EA07E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B14CA1AE-ECF0-4755-8897-CDE6B3EA07E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B14CA1AE-ECF0-4755-8897-CDE6B3EA07E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{529B35BA-418D-42F1-9F30-1F0652B3D795}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{529B35BA-418D-42F1-9F30-1F0652B3D795}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{529B35BA-418D-42F1-9F30-1F0652B3D795}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{529B35BA-418D-42F1-9F30-1F0652B3D795}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D326336F-E386-4EBE-AC52-9FC6DC475303}
+	EndGlobalSection
+EndGlobal

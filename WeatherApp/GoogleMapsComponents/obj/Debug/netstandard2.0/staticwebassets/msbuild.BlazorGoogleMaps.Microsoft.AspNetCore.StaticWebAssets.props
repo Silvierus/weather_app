@@ -1,0 +1,60 @@
+﻿<Project>
+  <ItemGroup>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\background.png">
+      <SourceType>Package</SourceType>
+      <SourceId>BlazorGoogleMaps</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/BlazorGoogleMaps</BasePath>
+      <RelativePath>background.png</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\m1.png">
+      <SourceType>Package</SourceType>
+      <SourceId>BlazorGoogleMaps</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/BlazorGoogleMaps</BasePath>
+      <RelativePath>m1.png</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\m2.png">
+      <SourceType>Package</SourceType>
+      <SourceId>BlazorGoogleMaps</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/BlazorGoogleMaps</BasePath>
+      <RelativePath>m2.png</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\m3.png">
+      <SourceType>Package</SourceType>
+      <SourceId>BlazorGoogleMaps</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/BlazorGoogleMaps</BasePath>
+      <RelativePath>m3.png</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\m4.png">
+      <SourceType>Package</SourceType>
+      <SourceId>BlazorGoogleMaps</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/BlazorGoogleMaps</BasePath>
+      <RelativePath>m4.png</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\m5.png">
+      <SourceType>Package</SourceType>
+      <SourceId>BlazorGoogleMaps</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/BlazorGoogleMaps</BasePath>
+      <RelativePath>m5.png</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\objectManager.js">
+      <SourceType>Package</SourceType>
+      <SourceId>BlazorGoogleMaps</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/BlazorGoogleMaps</BasePath>
+      <RelativePath>objectManager.js</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\styles.css">
+      <SourceType>Package</SourceType>
+      <SourceId>BlazorGoogleMaps</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/BlazorGoogleMaps</BasePath>
+      <RelativePath>styles.css</RelativePath>
+    </StaticWebAsset>
+  </ItemGroup>
+</Project>

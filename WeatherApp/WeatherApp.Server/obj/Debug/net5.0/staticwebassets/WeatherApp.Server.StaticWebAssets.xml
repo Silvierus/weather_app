@@ -1,0 +1,5 @@
+﻿<StaticWebAssets Version="1.0">
+  <ContentRoot BasePath="/" Path="C:\Users\silvi\source\repos\WeatherApp\WeatherApp.Server\obj\Debug\net5.0\scopedcss\bundle\" />
+  <ContentRoot BasePath="/Identity" Path="C:\Users\silvi\.nuget\packages\microsoft.aspnetcore.identity.ui\5.0.9\staticwebassets\V4\" />
+  <ContentRoot BasePath="_content/BlazorGoogleMaps" Path="C:\Users\silvi\source\repos\WeatherApp\GoogleMapsComponents\wwwroot\" />
+</StaticWebAssets>

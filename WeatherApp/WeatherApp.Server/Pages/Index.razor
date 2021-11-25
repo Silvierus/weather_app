@@ -1,0 +1,14 @@
+﻿@page "/"
+
+<div style="text-align:center; ">
+    <h1>Hello, welcome to the weather app!!</h1>
+    <AuthorizeView>
+        <Authorized>
+            <h3>You can access the working features via the side panel</h3>
+            <h5>CHANGE LOG: to add historical results</h5>
+        </Authorized>
+        <NotAuthorized>
+            <h2>Please login to continue, or register if you don't have an account</h2>
+        </NotAuthorized>
+     </AuthorizeView>
+</div>
