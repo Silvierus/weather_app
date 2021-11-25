@@ -2,11 +2,8 @@ from flask import Flask
 from flask_restx import Api, Resource, fields
 from lstm import train_data as td
 
-
 app = Flask(__name__)
-api = Api(app, version='1.0', title='TodoMVC API',
-    description='A simple TodoMVC API',
-)
+api = Api(app, version='1.0', title='TodoMVC API', description='A simple TodoMVC API')
 
 ns = api.namespace('weather', description='TODO operations')
 
